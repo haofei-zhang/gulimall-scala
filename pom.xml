@@ -24,6 +24,7 @@
         <easyexcel.version>3.3.4</easyexcel.version>
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
         <mysql.driver.version>8.0.15</mysql.driver.version>
+        <scala.version>2.13.11</scala.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -104,6 +105,19 @@
                 <artifactId>dubbo-registry-nacos</artifactId>
                 <version>${dubbo.version}</version>
             </dependency>
+
+            <!-- scala-->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-reflect</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
