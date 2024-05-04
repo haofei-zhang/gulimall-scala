@@ -14,6 +14,9 @@
         <module>gulimall-order</module>
         <module>gulimall-ware</module>
         <module>gulimall-admin</module>
+        <module>gulimall-common</module>
+        <module>gulimall-common/gulimall-model</module>
+        <module>gulimall-common/gulimall-util</module>
     </modules>
     <packaging>pom</packaging>
 
