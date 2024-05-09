@@ -1,0 +1,15 @@
+#server:
+#  port: 10001
+#spring:
+#  application:
+#    name: gulimall-admin
+#  config:
+#    import: nacos://192.168.31.110:8848
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: 192.168.31.110:8848
+#        namespace: e1dbb7ff-7bf8-4661-bf03-a8a58e2d0d21
+#      discovery:
+#        server-addr: 192.168.31.110:8848
+#        namespace: e1dbb7ff-7bf8-4661-bf03-a8a58e2d0d21

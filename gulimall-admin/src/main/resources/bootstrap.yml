@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gulimall-admin
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.31.110:8848
+        namespace: e1dbb7ff-7bf8-4661-bf03-a8a58e2d0d21
+        file-extension: yaml
+      discovery:
+        server-addr: 192.168.31.110:8848
+        namespace: e1dbb7ff-7bf8-4661-bf03-a8a58e2d0d21
