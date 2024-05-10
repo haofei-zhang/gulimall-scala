@@ -21,7 +21,7 @@ public enum ResultError implements IResultError{
     UNSUPPORTED_MEDIA_TYPE(415,"UNSUPPORTED_MEDIA_TYPE"),
     ;
 
-    private final Integer code;
+    private final int code;
     private final String msg;
 
 }

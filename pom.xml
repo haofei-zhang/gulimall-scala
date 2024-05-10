@@ -22,6 +22,7 @@
 
     <properties>
         <java.version>21</java.version>
+        <scala.version>2.13.11</scala.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
@@ -35,7 +36,6 @@
         <easyexcel.version>3.3.4</easyexcel.version>
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
         <mysql.driver.version>8.0.15</mysql.driver.version>
-        <scala.version>2.13.11</scala.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -68,7 +68,7 @@
             </dependency>
             <dependency>
                 <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-spring-boot-starter</artifactId>
+                <artifactId>sa-token-spring-boot3-starter</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
             <dependency>
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>1.18.32</version>
         </dependency>
     </dependencies>
 
