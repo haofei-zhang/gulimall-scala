@@ -32,10 +32,10 @@
         <fastjson.version>2.0.49</fastjson.version>
         <dubbo.version>3.2.12</dubbo.version>
         <druid.version>1.2.22</druid.version>
-        <mybatis-flex.version>1.2.46</mybatis-flex.version>
+        <mybatis-flex.version>1.8.9</mybatis-flex.version>
         <easyexcel.version>3.3.4</easyexcel.version>
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
-        <mysql.driver.version>8.0.15</mysql.driver.version>
+        <mysql.driver.version>8.4.0</mysql.driver.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -62,39 +62,38 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-core</artifactId>
-                <version>${sa-token.version}</version>
+                <groupId>com.mybatis-flex</groupId>
+                <artifactId>mybatis-flex-dependencies</artifactId>
+                <version>${mybatis-flex.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-spring-boot3-starter</artifactId>
+                <artifactId>sa-token-dependencies</artifactId>
                 <version>${sa-token.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-reactor-spring-boot-starter</artifactId>
-                <version>${sa-token.version}</version>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
+
+
             <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-redis-jackson</artifactId>
-                <version>${sa-token.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.driver.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
                 <version>${druid.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.guanmengyuan.spring-ex</groupId>
-                <artifactId>spring-boot-starter-mybatis-flex</artifactId>
-                <version>${mybatis-flex.version}</version>
             </dependency>
 
             <dependency>
@@ -112,18 +111,6 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper-starter.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-            <!-- nacos作注册中心-->
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-registry-nacos</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-
             <!-- scala-->
             <dependency>
                 <groupId>org.scala-lang</groupId>
