@@ -2,6 +2,7 @@ package cn.gulimall.demo.service.impl
 
 import cn.dev33.satoken.stp.StpUtil
 import cn.gulimall.demo.mapper.SysUserMapper
+import cn.gulimall.demo.model.po.table.SysUserTableDef
 import cn.gulimall.demo.service.SysLoginService
 import com.mybatisflex.core.query.QueryWrapper
 import org.slf4j.{Logger, LoggerFactory}
@@ -18,7 +19,7 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper) extends SysLoginService 
   private def log: Logger = LoggerFactory.getLogger(classOf[SysLoginServiceImpl])
 
   override def login(): Unit = {
-    val queryWrapper = QueryWrapper.create().select()
+    val queryWrapper = QueryWrapper.create().select().where(SysUserTableDef.SYS_USER.ID.eq(1))
     val list = sysUserMapper.selectListByQuery(queryWrapper)
     log.info(list.toString)
     StpUtil.login(1)

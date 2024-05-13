@@ -17,6 +17,7 @@
         <module>gulimall-common</module>
         <module>gulimall-common/gulimall-model</module>
         <module>gulimall-common/gulimall-util</module>
+        <module>flex-codegen</module>
     </modules>
     <packaging>pom</packaging>
 
