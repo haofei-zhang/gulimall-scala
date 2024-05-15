@@ -2,11 +2,13 @@ package cn.gulimall.demo.service.impl
 
 import cn.dev33.satoken.stp.StpUtil
 import cn.gulimall.demo.mapper.SysUserMapper
-import cn.gulimall.demo.model.po.table.SysUserTableDef
+import cn.gulimall.demo.model.dto.LoginDto
 import cn.gulimall.demo.service.SysLoginService
-import com.mybatisflex.core.query.QueryWrapper
+import org.apache.commons.codec.digest.DigestUtils
 import org.slf4j.{Logger, LoggerFactory}
 import org.springframework.stereotype.Service
+
+import java.util.Objects
 
 /**
  * 2024/5/10 下午11:32
@@ -18,11 +20,15 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper) extends SysLoginService 
 
   private def log: Logger = LoggerFactory.getLogger(classOf[SysLoginServiceImpl])
 
-  override def login(): Unit = {
-    val queryWrapper = QueryWrapper.create().select().where(SysUserTableDef.SYS_USER.ID.eq(1))
-    val list = sysUserMapper.selectListByQuery(queryWrapper)
-    log.info(list.toString)
-    StpUtil.login(1)
+  override def login(loginDto: LoginDto): Unit = {
+    val user = sysUserMapper.selectByMobile(loginDto.getMobile)
+    if (Objects.isNull(user)){
+      throw new RuntimeException("用户不存在")
+    }
+    if (!Objects.equals(user.getPassword, DigestUtils.sha256Hex(loginDto.getPassword))){
+      throw new RuntimeException("密码错误")
+    }
+    StpUtil.login(user.getId)
   }
 
   override def logout(): Unit = {

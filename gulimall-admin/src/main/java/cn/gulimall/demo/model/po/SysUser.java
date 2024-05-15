@@ -3,19 +3,20 @@ package cn.gulimall.demo.model.po;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serial;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
- * 2024/5/14 上午12:14
+ * 系统用户 实体类。
  *
  * @author Z
+ * @since 2024-05-14
  */
 @Data
 @Builder
@@ -69,4 +70,5 @@ public class SysUser implements Serializable {
      * 创建时间
      */
     private LocalDateTime createTime;
+
 }
