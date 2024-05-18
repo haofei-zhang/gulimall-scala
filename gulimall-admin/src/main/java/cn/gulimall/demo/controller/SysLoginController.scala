@@ -14,8 +14,7 @@ class SysLoginController(sysLoginService: SysLoginService) {
 
   @PostMapping(Array("/login"))
   def login(@RequestBody loginDto: LoginDto): ResultVo = {
-    sysLoginService.login(loginDto)
-    ResultVo.ok()
+    ResultVo.ok(sysLoginService.login(loginDto))
   }
 
   @PostMapping(Array("/logout"))

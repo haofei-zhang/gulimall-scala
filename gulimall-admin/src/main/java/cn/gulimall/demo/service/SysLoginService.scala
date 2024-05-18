@@ -1,5 +1,6 @@
 package cn.gulimall.demo.service
 
+import cn.dev33.satoken.stp.SaTokenInfo
 import cn.gulimall.demo.model.dto.LoginDto
 
 /**
@@ -9,7 +10,7 @@ import cn.gulimall.demo.model.dto.LoginDto
  */
 trait SysLoginService {
 
-  def login(loginDto: LoginDto): Unit
+  def login(loginDto: LoginDto): SaTokenInfo
 
   def logout(): Unit
 

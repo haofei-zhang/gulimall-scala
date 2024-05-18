@@ -1,6 +1,6 @@
 package cn.gulimall.demo.service.impl
 
-import cn.dev33.satoken.stp.StpUtil
+import cn.dev33.satoken.stp.{SaTokenInfo, StpUtil}
 import cn.gulimall.demo.mapper.SysUserMapper
 import cn.gulimall.demo.model.dto.LoginDto
 import cn.gulimall.demo.service.SysLoginService
@@ -20,7 +20,7 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper) extends SysLoginService 
 
   private def log: Logger = LoggerFactory.getLogger(classOf[SysLoginServiceImpl])
 
-  override def login(loginDto: LoginDto): Unit = {
+  override def login(loginDto: LoginDto): SaTokenInfo = {
     val user = sysUserMapper.selectByMobile(loginDto.getMobile)
     if (Objects.isNull(user)){
       throw new RuntimeException("用户不存在")
@@ -29,6 +29,8 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper) extends SysLoginService 
       throw new RuntimeException("密码错误")
     }
     StpUtil.login(user.getId)
+
+    StpUtil.getTokenInfo
   }
 
   override def logout(): Unit = {
