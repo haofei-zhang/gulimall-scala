@@ -79,7 +79,7 @@ public class SysMenuTableDef extends TableDef {
 
     public SysMenuTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return getCache(key, k -> new SysMenuTableDef("", "sys_menu", alias));
+        return TableDef.getCache(key, k -> new SysMenuTableDef("", "sys_menu", alias));
     }
 
 }

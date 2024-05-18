@@ -54,7 +54,7 @@ public class SysRoleMenuTableDef extends TableDef {
 
     public SysRoleMenuTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return getCache(key, k -> new SysRoleMenuTableDef("", "sys_role_menu", alias));
+        return TableDef.getCache(key, k -> new SysRoleMenuTableDef("", "sys_role_menu", alias));
     }
 
 }

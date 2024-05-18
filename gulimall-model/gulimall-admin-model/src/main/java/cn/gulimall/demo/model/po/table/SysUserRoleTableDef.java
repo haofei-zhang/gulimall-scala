@@ -54,7 +54,7 @@ public class SysUserRoleTableDef extends TableDef {
 
     public SysUserRoleTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return getCache(key, k -> new SysUserRoleTableDef("", "sys_user_role", alias));
+        return TableDef.getCache(key, k -> new SysUserRoleTableDef("", "sys_user_role", alias));
     }
 
 }

@@ -15,9 +15,11 @@
         <module>gulimall-ware</module>
         <module>gulimall-admin</module>
         <module>gulimall-common</module>
-        <module>gulimall-common/gulimall-model</module>
+        <module>gulimall-common/gulimall-common-model</module>
         <module>gulimall-common/gulimall-util</module>
         <module>flex-codegen</module>
+        <module>gulimall-model</module>
+        <module>gulimall-model/gulimall-admin-model</module>
     </modules>
     <packaging>pom</packaging>
 

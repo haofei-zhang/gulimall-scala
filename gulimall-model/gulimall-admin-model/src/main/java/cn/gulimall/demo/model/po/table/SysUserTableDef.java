@@ -84,7 +84,7 @@ public class SysUserTableDef extends TableDef {
 
     public SysUserTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return getCache(key, k -> new SysUserTableDef("", "sys_user", alias));
+        return TableDef.getCache(key, k -> new SysUserTableDef("", "sys_user", alias));
     }
 
 }
