@@ -17,6 +17,7 @@ class SaTokenConfig extends WebMvcConfigurer{
     registry.addInterceptor(new SaInterceptor(_ => StpUtil.checkLogin()))
       .addPathPatterns("/**")
       .excludePathPatterns("/login")
+      .excludePathPatterns("/captcha.jpg")
   }
 
 }
