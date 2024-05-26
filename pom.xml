@@ -39,6 +39,7 @@
         <easyexcel.version>3.3.4</easyexcel.version>
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
         <mysql.driver.version>8.4.0</mysql.driver.version>
+        <hutool.version>5.8.27</hutool.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -113,6 +114,12 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
             <!-- scala-->
             <dependency>

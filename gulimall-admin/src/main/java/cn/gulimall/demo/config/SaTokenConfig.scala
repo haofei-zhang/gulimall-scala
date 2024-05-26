@@ -1,9 +1,11 @@
 package cn.gulimall.demo.config
 
 import cn.dev33.satoken.interceptor.SaInterceptor
+import cn.dev33.satoken.router.SaRouter
 import cn.dev33.satoken.stp.StpUtil
+import cn.gulimall.demo.model.vo.ResultVo
 import org.springframework.context.annotation.Configuration
-import org.springframework.web.servlet.config.annotation.{InterceptorRegistry, WebMvcConfigurer}
+import org.springframework.web.servlet.config.annotation.{CorsRegistry, InterceptorRegistry, WebMvcConfigurer}
 
 /**
  *
@@ -14,10 +16,23 @@ import org.springframework.web.servlet.config.annotation.{InterceptorRegistry, W
 class SaTokenConfig extends WebMvcConfigurer{
 
   override def addInterceptors(registry: InterceptorRegistry): Unit = {
-    registry.addInterceptor(new SaInterceptor(_ => StpUtil.checkLogin()))
+    registry.addInterceptor(new SaInterceptor(_ =>
+        SaRouter
+          .`match`("/**")
+          .notMatch("/login","/captcha.jpg")
+          .check(_ => StpUtil.checkLogin())
+//          .back(ResultVo.error().toJSONString())
+      ))
       .addPathPatterns("/**")
-      .excludePathPatterns("/login")
-      .excludePathPatterns("/captcha.jpg")
+  }
+
+  override def addCorsMappings(registry: CorsRegistry): Unit = {
+    registry.addMapping("/**")
+      .allowedOriginPatterns("http://*")
+      .allowedMethods("*")
+      .allowedHeaders("*")
+      .allowCredentials(true)
+//      .maxAge(3600)
   }
 
 }
