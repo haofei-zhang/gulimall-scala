@@ -8,7 +8,7 @@ trait IResultError {
    * 错误码
    * @return
    */
-  def getCode: Int
+  def getCode: Integer
 
   /**
    * 错误信息

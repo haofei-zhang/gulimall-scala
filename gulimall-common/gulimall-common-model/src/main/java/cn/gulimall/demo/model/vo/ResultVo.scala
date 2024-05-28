@@ -7,15 +7,17 @@ import com.alibaba.fastjson2.JSONObject
  */
 class ResultVo extends JSONObject {
 
+  override def put(key: String, value: AnyRef): ResultVo = {
+    super.put(key, value)
+    this
+  }
+
 }
 
 object ResultVo {
 
   private def getInstance(error: IResultError): ResultVo = {
-    val r = new ResultVo
-    r.put("code", error.getCode)
-    r.put("msg", error.getMsg)
-    r
+    new ResultVo().put("code", error.getCode).put("msg", error.getMsg)
   }
 
   def ok(): ResultVo = {
@@ -23,9 +25,7 @@ object ResultVo {
   }
 
   def ok(data: AnyRef): ResultVo = {
-    val r = getInstance(ResultError.OK)
-    r.put("data", data)
-    r
+    getInstance(ResultError.OK).put("data", data)
   }
 
   def error(): ResultVo = {
@@ -33,9 +33,7 @@ object ResultVo {
   }
 
   def error(msg: String): ResultVo = {
-    val r = getInstance(ResultError.ERROR)
-    r.put("msg", msg)
-    r
+    getInstance(ResultError.ERROR).put("msg", msg)
   }
 
 }
