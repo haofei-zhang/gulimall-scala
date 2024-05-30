@@ -1,6 +1,8 @@
 package cn.gulimall.demo.config
 
-import cn.gulimall.demo.model.vo.ResultVo
+import cn.dev33.satoken.exception.SaTokenException
+import cn.gulimall.demo.model.vo.{ResultError, ResultVo}
+import org.slf4j.{Logger, LoggerFactory}
 import org.springframework.web.bind.annotation.{ExceptionHandler, RestControllerAdvice}
 
 /**
@@ -11,9 +13,18 @@ import org.springframework.web.bind.annotation.{ExceptionHandler, RestController
 @RestControllerAdvice
 class ExceptionConfig {
 
-  @ExceptionHandler(Array(classOf[Throwable]))
-  def exception():ResultVo = {
+  val log: Logger = LoggerFactory.getLogger(classOf[ExceptionConfig])
+
+  @ExceptionHandler(Array(classOf[Exception]))
+  def exception(exception: Exception):ResultVo = {
+    log.error(exception.getMessage, exception)
     ResultVo.error()
+  }
+
+  @ExceptionHandler(Array(classOf[SaTokenException]))
+  def saTokenException(exception: SaTokenException): ResultVo = {
+    log.error(exception.getMessage, exception)
+    ResultVo.error(ResultError.UNAUTHORIZED)
   }
 
 }
