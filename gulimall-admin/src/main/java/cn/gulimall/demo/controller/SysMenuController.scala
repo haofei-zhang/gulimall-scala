@@ -2,7 +2,7 @@ package cn.gulimall.demo.controller
 
 import cn.dev33.satoken.stp.StpUtil
 import cn.gulimall.demo.model.vo.ResultVo
-import cn.gulimall.demo.service.SysMenuService
+import cn.gulimall.demo.service.{SysLoginService, SysMenuService}
 import org.springframework.web.bind.annotation.{GetMapping, RequestMapping, RestController}
 
 /**
@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.{GetMapping, RequestMapping, Rest
  */
 @RestController
 @RequestMapping(Array("/sys/menu"))
-class SysMenuController (sysMenuService: SysMenuService){
+class SysMenuController (sysMenuService: SysMenuService,
+                         sysLoginService: SysLoginService){
 
   @GetMapping(Array("/nav"))
   def nav(): ResultVo = {
-    val menuList = sysMenuService.getUserMenuList(StpUtil.getLoginId(0L))
-    ResultVo.ok().put("menuList", menuList)
+    val menuList = sysMenuService.getUserMenuList(StpUtil.getLoginIdAsLong)
+    val permissions = sysLoginService.getUserPermissions(StpUtil.getLoginIdAsLong)
+    ResultVo.ok().put("menuList", menuList).put("permissions", permissions)
   }
 
 }

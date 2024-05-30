@@ -1,14 +1,17 @@
 package cn.gulimall.demo.service.impl
 
 import cn.dev33.satoken.stp.{SaTokenInfo, StpUtil}
-import cn.gulimall.demo.mapper.SysUserMapper
+import cn.gulimall.demo.mapper.{SysMenuMapper, SysRoleMenuMapper, SysUserMapper, SysUserRoleMapper}
 import cn.gulimall.demo.model.dto.LoginDto
+import cn.gulimall.demo.model.po.SysMenu
 import cn.gulimall.demo.service.SysLoginService
 import org.apache.commons.codec.digest.DigestUtils
 import org.slf4j.{Logger, LoggerFactory}
 import org.springframework.stereotype.Service
 
+import java.util
 import java.util.Objects
+import java.util.stream.Collectors
 
 /**
  * 2024/5/10 下午11:32
@@ -16,7 +19,10 @@ import java.util.Objects
  *
  */
 @Service
-class SysLoginServiceImpl(sysUserMapper: SysUserMapper) extends SysLoginService {
+class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
+                          sysUserRoleMapper: SysUserRoleMapper,
+                          sysRoleMenuMapper: SysRoleMenuMapper,
+                          sysMenuMapper: SysMenuMapper) extends SysLoginService {
 
   private def log: Logger = LoggerFactory.getLogger(classOf[SysLoginServiceImpl])
 
@@ -35,5 +41,20 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper) extends SysLoginService 
 
   override def logout(): Unit = {
     StpUtil.logout()
+  }
+
+  /**
+   * 获取用户权限
+   *
+   * @return
+   */
+  override def getUserPermissions(userId: Long): util.List[String] = {
+    val menuList = sysMenuMapper.selectAll()
+
+    val roleIds = sysUserRoleMapper.getRoleIdList(userId)
+
+    val menuIds = sysRoleMenuMapper.getMenuIdList(roleIds)
+
+    menuList.stream().filter(menu => menuIds.contains(menu.getId)).map((menu: SysMenu) => menu.getPerms).collect(Collectors.toList())
   }
 }

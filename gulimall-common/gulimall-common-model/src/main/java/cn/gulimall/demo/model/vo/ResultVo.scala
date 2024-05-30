@@ -36,4 +36,8 @@ object ResultVo {
     getInstance(ResultError.ERROR).put("msg", msg)
   }
 
+  def error(error: IResultError): ResultVo = {
+    getInstance(error)
+  }
+
 }
