@@ -17,9 +17,8 @@ class SysMenuController (sysMenuService: SysMenuService,
 
   @GetMapping(Array("/nav"))
   def nav(): ResultVo = {
-    val menuList = sysMenuService.getUserMenuList(StpUtil.getLoginIdAsLong)
-    val permissions = sysLoginService.getUserPermissions(StpUtil.getLoginIdAsLong)
-    ResultVo.ok().put("menuList", menuList).put("permissions", permissions)
+    val data = sysLoginService.getUserMenu(StpUtil.getLoginIdAsLong)
+    ResultVo.ok(data)
   }
 
 }
