@@ -60,7 +60,10 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
     val menuList = sysMenuMapper.selectAll()
     val roleIds = sysUserRoleMapper.getRoleIdList(userId)
     val menuIds = sysRoleMenuMapper.getMenuIdList(roleIds)
-    menuList.stream().filter(menu => menuIds.contains(menu.getId)).map((menu: SysMenu) => menu.getPerms).collect(Collectors.toList())
+    //开发测试，返回所有的数据
+    menuList.stream()
+//      .filter(menu => menuIds.contains(menu.getId))
+      .map((menu: SysMenu) => menu.getPerms).collect(Collectors.toList())
   }
 
   /**
@@ -101,12 +104,5 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
       x.setChildren(children)
     })
   }
-
-  /**
-   * 获取用户菜单
-   *
-   * @param userId
-   * @return
-   */
 
 }
