@@ -20,6 +20,7 @@
         <module>flex-codegen</module>
         <module>gulimall-model</module>
         <module>gulimall-model/gulimall-admin-model</module>
+        <module>gulimall-gateway</module>
     </modules>
     <packaging>pom</packaging>
 

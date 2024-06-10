@@ -7,12 +7,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient
 /**
  *
  * @author Z
- * @since 2024/5/14 下午10:37
+ * @since 2024/6/10 下午4:41
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-class AdminApplication
+class GatewayApplication
 
-object AdminApplication extends App {
-  SpringApplication.run(classOf[AdminApplication], args: _*)
+object GatewayApplication extends App {
+  SpringApplication.run(classOf[GatewayApplication], args: _*)
 }
