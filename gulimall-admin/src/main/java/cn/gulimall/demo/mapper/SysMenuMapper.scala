@@ -2,6 +2,7 @@ package cn.gulimall.demo.mapper
 
 import cn.gulimall.demo.model.po.SysMenu
 import cn.gulimall.demo.model.po.table.SysMenuTableDef
+import cn.hutool.core.collection.CollUtil
 import com.mybatisflex.core.BaseMapper
 import com.mybatisflex.core.query.QueryWrapper
 import org.apache.ibatis.annotations.Mapper
@@ -19,7 +20,8 @@ trait SysMenuMapper extends BaseMapper[SysMenu]{
   def getMenuList(list: util.List[Long]): util.List[SysMenu] = {
     val query = QueryWrapper.create()
       .select()
-      .where(SysMenuTableDef.SYS_MENU.ID.in(list)).where(SysMenuTableDef.SYS_MENU.TYPE.in(List(0,1)))
+      .where(SysMenuTableDef.SYS_MENU.TYPE.in(util.Arrays.asList(0,1)))
+      .where(SysMenuTableDef.SYS_MENU.ID.in(list, CollUtil.isNotEmpty(list)))
     selectListByQuery(query)
   }
 
