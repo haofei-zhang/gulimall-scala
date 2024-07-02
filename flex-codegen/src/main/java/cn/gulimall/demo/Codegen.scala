@@ -13,7 +13,7 @@ object Codegen {
 
   def main(args: Array[String]): Unit = {
     val dataSource = new HikariDataSource()
-    dataSource.setJdbcUrl("jdbc:mysql://192.168.31.110:3306/gulimall_admin?characterEncoding=utf-8")
+    dataSource.setJdbcUrl("jdbc:mysql://192.168.31.110:3306/gulimall_pms?characterEncoding=utf-8")
     dataSource.setUsername("root")
     dataSource.setPassword("123456")
 
@@ -31,7 +31,7 @@ object Codegen {
     globalConfig.setEntityPackage("cn.gulimall.demo.model.po")
     //设置表前缀和只生成哪些表
     globalConfig.setTablePrefix("")
-    globalConfig.setGenerateTable("sys_user")
+    globalConfig.setGenerateTable("pms_category")
 
     //设置生成 entity 并启用 Lombok
     globalConfig.setEntityGenerateEnable(true)
