@@ -1,6 +1,7 @@
 package cn.gulimall.demo.service
 
 import cn.gulimall.demo.model.po.PmsCategory
+import cn.gulimall.demo.model.vo.PmsCategoryVo
 
 import java.util
 
@@ -15,6 +16,6 @@ trait PmsCategoryService {
    * 获取树形结构分类
    * @return
    */
-  def listWithTree(): util.List[PmsCategory]
+  def listWithTree(): util.List[PmsCategoryVo]
 
 }
