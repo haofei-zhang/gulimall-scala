@@ -26,14 +26,4 @@ class SaTokenConfig extends WebMvcConfigurer{
       .excludePathPatterns("/login","/captcha.jpg")
   }
 
-  override def addCorsMappings(registry: CorsRegistry): Unit = {
-    registry.addMapping("/**")
-      .allowedOriginPatterns("http://*")
-      .allowedMethods("*")
-      .allowedHeaders("*")
-      .allowCredentials(true)
-//      .maxAge(3600)
-  }
-
-
 }
