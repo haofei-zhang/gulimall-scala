@@ -12,3 +12,4 @@ spring:
           - data-id: datasource.yml
           - data-id: redis.yml
           - data-id: default-sa-token-config.yml
+          - data-id: minio.yml

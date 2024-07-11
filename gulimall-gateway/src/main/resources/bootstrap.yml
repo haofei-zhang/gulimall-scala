@@ -9,3 +9,13 @@ spring:
         file-extension: yml
         extension-configs:
           - data-id: default-config.yml
+    gateway:
+      routes:
+        - id: gulimall_admin
+          uri: lb://gulimall-admin
+          predicates:
+            - Path=/admin/**
+        - id: gulimall_product
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/product/**

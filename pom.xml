@@ -41,6 +41,7 @@
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
         <mysql.driver.version>8.4.0</mysql.driver.version>
         <hutool.version>5.8.27</hutool.version>
+        <minio.version>8.5.11</minio.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -121,6 +122,12 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
             </dependency>
             <!-- scala-->
             <dependency>
