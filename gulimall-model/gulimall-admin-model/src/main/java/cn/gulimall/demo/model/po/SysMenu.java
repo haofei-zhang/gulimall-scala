@@ -3,19 +3,19 @@ package cn.gulimall.demo.model.po;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
-import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * 菜单管理 实体类。
  *
  * @author Z
- * @since 2024-05-18
+ * @since 2024-07-26
  */
 @Data
 @Builder
@@ -28,12 +28,12 @@ public class SysMenu implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id(keyType = KeyType.Auto)
-    private Long id;
+    private Integer menuId;
 
     /**
      * 父菜单ID，一级菜单为0
      */
-    private Long parentId;
+    private Integer parentId;
 
     /**
      * 菜单名称

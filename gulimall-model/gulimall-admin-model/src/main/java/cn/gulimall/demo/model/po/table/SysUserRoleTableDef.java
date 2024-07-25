@@ -9,7 +9,7 @@ import java.io.Serial;
  * 用户与角色对应关系 表定义层。
  *
  * @author Z
- * @since 2024-05-18
+ * @since 2024-07-26
  */
 public class SysUserRoleTableDef extends TableDef {
 
@@ -54,7 +54,7 @@ public class SysUserRoleTableDef extends TableDef {
 
     public SysUserRoleTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return TableDef.getCache(key, k -> new SysUserRoleTableDef("", "sys_user_role", alias));
+        return getCache(key, k -> new SysUserRoleTableDef("", "sys_user_role", alias));
     }
 
 }

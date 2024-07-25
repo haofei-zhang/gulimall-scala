@@ -9,7 +9,7 @@ import java.io.Serial;
  * 系统用户 表定义层。
  *
  * @author Z
- * @since 2024-05-14
+ * @since 2024-07-26
  */
 public class SysUserTableDef extends TableDef {
 
@@ -20,9 +20,6 @@ public class SysUserTableDef extends TableDef {
      * 系统用户
      */
     public static final SysUserTableDef SYS_USER = new SysUserTableDef();
-
-    
-    public final QueryColumn ID = new QueryColumn(this, "id");
 
     /**
      * 盐
@@ -44,6 +41,9 @@ public class SysUserTableDef extends TableDef {
      */
     public final QueryColumn STATUS = new QueryColumn(this, "status");
 
+    
+    public final QueryColumn USER_ID = new QueryColumn(this, "user_id");
+
     /**
      * 密码
      */
@@ -57,12 +57,12 @@ public class SysUserTableDef extends TableDef {
     /**
      * 创建时间
      */
-    public final QueryColumn CREATE_TIME = new QueryColumn(this, "create_time");
+    public final QueryColumn INSERT_TIME = new QueryColumn(this, "insert_time");
 
     /**
      * 创建者ID
      */
-    public final QueryColumn CREATE_USER_ID = new QueryColumn(this, "create_user_id");
+    public final QueryColumn INSERT_USER = new QueryColumn(this, "insert_user");
 
     /**
      * 所有字段。
@@ -72,7 +72,7 @@ public class SysUserTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, USERNAME, PASSWORD, SALT, EMAIL, MOBILE, STATUS, CREATE_USER_ID, CREATE_TIME};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{USER_ID, USERNAME, PASSWORD, SALT, EMAIL, MOBILE, STATUS, INSERT_USER, INSERT_TIME};
 
     public SysUserTableDef() {
         super("", "sys_user");
@@ -84,7 +84,7 @@ public class SysUserTableDef extends TableDef {
 
     public SysUserTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return TableDef.getCache(key, k -> new SysUserTableDef("", "sys_user", alias));
+        return getCache(key, k -> new SysUserTableDef("", "sys_user", alias));
     }
 
 }

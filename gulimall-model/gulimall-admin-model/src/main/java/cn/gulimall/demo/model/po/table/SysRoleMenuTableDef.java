@@ -9,7 +9,7 @@ import java.io.Serial;
  * 角色与菜单对应关系 表定义层。
  *
  * @author Z
- * @since 2024-05-18
+ * @since 2024-07-26
  */
 public class SysRoleMenuTableDef extends TableDef {
 
@@ -54,7 +54,7 @@ public class SysRoleMenuTableDef extends TableDef {
 
     public SysRoleMenuTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return TableDef.getCache(key, k -> new SysRoleMenuTableDef("", "sys_role_menu", alias));
+        return getCache(key, k -> new SysRoleMenuTableDef("", "sys_role_menu", alias));
     }
 
 }

@@ -9,7 +9,7 @@ import java.io.Serial;
  * 菜单管理 表定义层。
  *
  * @author Z
- * @since 2024-05-18
+ * @since 2024-07-26
  */
 public class SysMenuTableDef extends TableDef {
 
@@ -20,9 +20,6 @@ public class SysMenuTableDef extends TableDef {
      * 菜单管理
      */
     public static final SysMenuTableDef SYS_MENU = new SysMenuTableDef();
-
-    
-    public final QueryColumn ID = new QueryColumn(this, "id");
 
     /**
      * 菜单URL
@@ -49,6 +46,9 @@ public class SysMenuTableDef extends TableDef {
      */
     public final QueryColumn PERMS = new QueryColumn(this, "perms");
 
+    
+    public final QueryColumn MENU_ID = new QueryColumn(this, "menu_id");
+
     /**
      * 排序
      */
@@ -67,7 +67,7 @@ public class SysMenuTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM};
 
     public SysMenuTableDef() {
         super("", "sys_menu");
@@ -79,7 +79,7 @@ public class SysMenuTableDef extends TableDef {
 
     public SysMenuTableDef as(String alias) {
         String key = getNameWithSchema() + "." + alias;
-        return TableDef.getCache(key, k -> new SysMenuTableDef("", "sys_menu", alias));
+        return getCache(key, k -> new SysMenuTableDef("", "sys_menu", alias));
     }
 
 }
