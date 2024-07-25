@@ -10,15 +10,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ResultError implements IResultError{
 
-    OK(200, "OK"),
-    ERROR(500, "ERROR"),
-    NOT_FOUND(404, "NOT_FOUND"),
-    BAD_REQUEST(400, "BAD_REQUEST"),
-    UNAUTHORIZED(401, "UNAUTHORIZED"),
-    FORBIDDEN(403, "FORBIDDEN"),
-    NOT_ACCEPTABLE(406, "NOT_ACCEPTABLE"),
-    CONFLICT(409, "CONFLICT"),
-    UNSUPPORTED_MEDIA_TYPE(415,"UNSUPPORTED_MEDIA_TYPE"),
+    OK(0, "OK"),
+    ERROR(10000, "ERROR"),
+    UNAUTHORIZED(20000, "UNAUTHORIZED")
     ;
 
     private final Integer code;
