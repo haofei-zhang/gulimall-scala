@@ -38,7 +38,7 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
     if (!Objects.equals(user.getPassword, DigestUtils.sha256Hex(loginDto.getPassword))){
       throw new RuntimeException("密码错误")
     }
-    StpUtil.login(user.getId)
+    StpUtil.login(user.getUserId)
 
     StpUtil.getTokenInfo
   }

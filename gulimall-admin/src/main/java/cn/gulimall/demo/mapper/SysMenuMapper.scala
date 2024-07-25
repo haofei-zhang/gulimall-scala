@@ -21,7 +21,7 @@ trait SysMenuMapper extends BaseMapper[SysMenu]{
     val query = QueryWrapper.create()
       .select()
       .where(SysMenuTableDef.SYS_MENU.TYPE.in(util.Arrays.asList(0,1)))
-      .where(SysMenuTableDef.SYS_MENU.ID.in(list, CollUtil.isNotEmpty(list)))
+      .where(SysMenuTableDef.SYS_MENU.MENU_ID.in(list, CollUtil.isNotEmpty(list)))
     selectListByQuery(query)
   }
 
