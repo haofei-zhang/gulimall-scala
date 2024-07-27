@@ -63,7 +63,9 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
     //开发测试，返回所有的数据
     menuList.stream()
 //      .filter(menu => menuIds.contains(menu.getId))
-      .map((menu: SysMenu) => menu.getPerms).collect(Collectors.toList())
+      .map((menu: SysMenu) => menu.getPerms)
+      .distinct()
+      .collect(Collectors.toList())
   }
 
   /**
@@ -83,23 +85,23 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
 
   def getMenuList(list: util.List[Long]): util.List[SysMenuVo] = {
     val menuList = sysMenuMapper.getMenuList(list)
-    val menuMap: util.Map[lang.Long, util.List[SysMenuVo]] = menuList.stream().map(x => {
+    val menuMap: util.Map[lang.Integer, util.List[SysMenuVo]] = menuList.stream().map(x => {
       //TODO 后面要用mapstruct
       val sysMenuVo = new SysMenuVo()
       BeanUtils.copyProperties(x, sysMenuVo)
       sysMenuVo
     }).collect(Collectors.groupingBy((x: SysMenuVo) => x.getParentId))
-    val parentList = menuMap.get(0L)
+    val parentList = menuMap.get(0)
     fillChildrenMenu(parentList, menuMap)
     parentList
   }
 
-  def fillChildrenMenu(list: util.List[SysMenuVo], map: util.Map[lang.Long, util.List[SysMenuVo]]): Unit = {
+  def fillChildrenMenu(list: util.List[SysMenuVo], map: util.Map[lang.Integer, util.List[SysMenuVo]]): Unit = {
     if (CollUtil.isEmpty(list)){
       return
     }
     list.forEach(x => {
-      val children = map.get(x.getId)
+      val children = map.get(x.getMenuId)
       fillChildrenMenu(children, map)
       x.setChildren(children)
     })

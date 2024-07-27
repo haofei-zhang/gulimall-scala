@@ -11,12 +11,12 @@ import java.util.List;
 @Data
 public class SysMenuVo {
 
-    private Long id;
+    private Integer menuId;
 
     /**
      * 父菜单ID，一级菜单为0
      */
-    private Long parentId;
+    private Integer parentId;
 
     /**
      * 父菜单名称
