@@ -65,6 +65,7 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
 //      .filter(menu => menuIds.contains(menu.getId))
       .map((menu: SysMenu) => menu.getPerms)
       .distinct()
+      .filter(x => Objects.nonNull(x))
       .collect(Collectors.toList())
   }
 

@@ -3,19 +3,19 @@ package cn.gulimall.demo.model.po;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
-import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * 商品三级分类 实体类。
  *
  * @author Z
- * @since 2024-06-29
+ * @since 2024-07-28
  */
 @Data
 @Builder
@@ -31,7 +31,7 @@ public class PmsCategory implements Serializable {
      * 分类id
      */
     @Id(keyType = KeyType.Auto)
-    private Long catId;
+    private Integer catId;
 
     /**
      * 分类名称
@@ -41,7 +41,7 @@ public class PmsCategory implements Serializable {
     /**
      * 父分类id
      */
-    private Long parentCid;
+    private Integer parentCid;
 
     /**
      * 层级
@@ -51,7 +51,7 @@ public class PmsCategory implements Serializable {
     /**
      * 是否显示[0-不显示，1显示]
      */
-    private Integer showStatus;
+    private Boolean showStatus;
 
     /**
      * 排序

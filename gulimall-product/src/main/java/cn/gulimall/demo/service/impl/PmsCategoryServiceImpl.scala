@@ -26,20 +26,20 @@ class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCa
   override def listWithTree(): util.List[PmsCategoryVo] = {
     val categoryList = pmsCategoryMapper.selectAll()
 
-    val categoryMap: util.Map[lang.Long, util.List[PmsCategoryVo]] = categoryList.stream().map(category => {
+    val categoryMap: util.Map[lang.Integer, util.List[PmsCategoryVo]] = categoryList.stream().map(category => {
       val vo = new PmsCategoryVo
       BeanUtils.copyProperties(category, vo)
       vo
     }).collect(Collectors.groupingBy((x: PmsCategoryVo) => x.getParentCid))
 
-    val rootCategory = categoryMap.get(0L)
+    val rootCategory = categoryMap.get(0)
 
     fillChildren(rootCategory, categoryMap)
 
     rootCategory
   }
 
-  def fillChildren(list: util.List[PmsCategoryVo], map: util.Map[lang.Long, util.List[PmsCategoryVo]]): Unit = {
+  def fillChildren(list: util.List[PmsCategoryVo], map: util.Map[lang.Integer, util.List[PmsCategoryVo]]): Unit = {
     if (CollUtil.isEmpty(list)){
       return
     }

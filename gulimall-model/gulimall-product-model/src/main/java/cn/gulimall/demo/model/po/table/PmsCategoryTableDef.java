@@ -9,7 +9,7 @@ import java.io.Serial;
  * 商品三级分类 表定义层。
  *
  * @author Z
- * @since 2024-06-29
+ * @since 2024-07-28
  */
 public class PmsCategoryTableDef extends TableDef {
 

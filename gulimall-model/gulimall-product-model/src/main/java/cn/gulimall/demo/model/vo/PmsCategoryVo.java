@@ -14,12 +14,12 @@ public class PmsCategoryVo {
     /**
      * 分类id
      */
-    private Long catId;
+    private Integer catId;
 
     /**
      * 父分类id
      */
-    private Long parentCid;
+    private Integer parentCid;
 
     /**
      * 分类名称
