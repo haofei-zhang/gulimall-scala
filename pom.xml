@@ -42,6 +42,7 @@
         <mysql.driver.version>8.4.0</mysql.driver.version>
         <hutool.version>5.8.27</hutool.version>
         <minio.version>8.5.11</minio.version>
+        <jackson.scala.version>2.15.4</jackson.scala.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -139,6 +140,12 @@
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-library</artifactId>
                 <version>${scala.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-scala_2.13</artifactId>
+                <version>${jackson.scala.version}</version>
             </dependency>
 
         </dependencies>
