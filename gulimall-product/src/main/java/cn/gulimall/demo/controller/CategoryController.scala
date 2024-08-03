@@ -1,8 +1,9 @@
 package cn.gulimall.demo.controller
 
+import cn.gulimall.demo.model.dto.PmsCategoryDto
 import cn.gulimall.demo.model.vo.ResultVo
 import cn.gulimall.demo.service.PmsCategoryService
-import org.springframework.web.bind.annotation.{GetMapping, RequestMapping, RestController}
+import org.springframework.web.bind.annotation.{GetMapping, RequestBody, RequestMapping, RestController}
 
 /**
  *
@@ -16,6 +17,10 @@ class CategoryController(pmsCategoryService: PmsCategoryService) {
   @GetMapping(Array("/list/tree"))
   def listWithTree(): ResultVo = {
     ResultVo.ok(pmsCategoryService.listWithTree())
+  }
+
+  def insert(@RequestBody pmsCategoryDto: PmsCategoryDto): ResultVo = {
+
   }
 
 }

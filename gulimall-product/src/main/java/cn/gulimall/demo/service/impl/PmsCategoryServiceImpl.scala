@@ -1,6 +1,8 @@
 package cn.gulimall.demo.service.impl
 
 import cn.gulimall.demo.mapper.PmsCategoryMapper
+import cn.gulimall.demo.model.dto.PmsCategoryDto
+import cn.gulimall.demo.model.po.PmsCategory
 import cn.gulimall.demo.model.vo.PmsCategoryVo
 import cn.gulimall.demo.service.PmsCategoryService
 import cn.hutool.core.collection.CollUtil
@@ -18,11 +20,6 @@ import java.util.stream.Collectors
 @Service
 class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCategoryService{
 
-  /**
-   * 获取树形结构分类
-   *
-   * @return
-   */
   override def listWithTree(): util.List[PmsCategoryVo] = {
     val categoryList = pmsCategoryMapper.selectAll()
 
@@ -50,4 +47,16 @@ class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCa
     })
   }
 
+
+  override def insert(pmsCategoryDto: PmsCategoryDto): Unit = {
+    val category = new PmsCategory
+    BeanUtils.copyProperties(pmsCategoryDto, category)
+    pmsCategoryMapper.insert(category)
+  }
+
+  override def update(pmsCategoryDto: PmsCategoryDto): Unit = {
+    val category = new PmsCategory
+    BeanUtils.copyProperties(pmsCategoryDto, category)
+    pmsCategoryMapper.update(category)
+  }
 }
