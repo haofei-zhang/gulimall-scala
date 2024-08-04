@@ -11,7 +11,7 @@ public class PmsCategoryDto {
     /**
      * 分类id
      */
-    private Long catId;
+    private Integer catId;
 
     /**
      * 分类名称

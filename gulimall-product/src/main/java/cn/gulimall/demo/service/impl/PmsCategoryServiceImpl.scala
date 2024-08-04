@@ -1,16 +1,16 @@
 package cn.gulimall.demo.service.impl
 
+import cn.gulimall.demo.converter.CategoryConverter
 import cn.gulimall.demo.mapper.PmsCategoryMapper
 import cn.gulimall.demo.model.dto.PmsCategoryDto
-import cn.gulimall.demo.model.po.PmsCategory
 import cn.gulimall.demo.model.vo.PmsCategoryVo
 import cn.gulimall.demo.service.PmsCategoryService
 import cn.hutool.core.collection.CollUtil
 import org.springframework.beans.BeanUtils
 import org.springframework.stereotype.Service
 
-import java.{lang, util}
 import java.util.stream.Collectors
+import java.{lang, util}
 
 /**
  *
@@ -19,6 +19,8 @@ import java.util.stream.Collectors
  */
 @Service
 class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCategoryService{
+
+  val categoryConverter: CategoryConverter = CategoryConverter.INSTANCE
 
   override def listWithTree(): util.List[PmsCategoryVo] = {
     val categoryList = pmsCategoryMapper.selectAll()
@@ -49,14 +51,12 @@ class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCa
 
 
   override def insert(pmsCategoryDto: PmsCategoryDto): Unit = {
-    val category = new PmsCategory
-    BeanUtils.copyProperties(pmsCategoryDto, category)
-    pmsCategoryMapper.insert(category)
+    val category = categoryConverter.toPo(pmsCategoryDto)
+//    pmsCategoryMapper.insert(category)
   }
 
   override def update(pmsCategoryDto: PmsCategoryDto): Unit = {
-    val category = new PmsCategory
-    BeanUtils.copyProperties(pmsCategoryDto, category)
-    pmsCategoryMapper.update(category)
+    val category = categoryConverter.toPo(pmsCategoryDto)
+//    pmsCategoryMapper.update(category)
   }
 }

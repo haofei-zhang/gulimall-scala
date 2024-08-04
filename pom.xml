@@ -41,6 +41,7 @@
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
         <mysql.driver.version>8.4.0</mysql.driver.version>
         <hutool.version>5.8.27</hutool.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
         <minio.version>8.5.11</minio.version>
         <jackson.scala.version>2.15.4</jackson.scala.version>
     </properties>
@@ -123,6 +124,16 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
 
             <dependency>
