@@ -59,4 +59,13 @@ class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCa
     val category = categoryConverter.toPo(pmsCategoryDto)
 //    pmsCategoryMapper.update(category)
   }
+
+  /**
+   * 批量删除
+   *
+   * @param ids
+   */
+  override def delete(ids: util.List[Integer]): Unit = {
+    pmsCategoryMapper.deleteBatchByIds(ids)
+  }
 }

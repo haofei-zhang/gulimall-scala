@@ -24,11 +24,6 @@ public class PmsCategoryDto {
     private Integer parentCid;
 
     /**
-     * 是否显示[0-不显示，1显示]
-     */
-    private Boolean showStatus;
-
-    /**
      * 排序
      */
     private Integer sort;

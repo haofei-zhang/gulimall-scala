@@ -9,7 +9,7 @@ import java.io.Serial;
  * 商品三级分类 表定义层。
  *
  * @author Z
- * @since 2024-07-28
+ * @since 2024-08-07
  */
 public class PmsCategoryTableDef extends TableDef {
 
@@ -20,6 +20,11 @@ public class PmsCategoryTableDef extends TableDef {
      * 商品三级分类
      */
     public static final PmsCategoryTableDef PMS_CATEGORY = new PmsCategoryTableDef();
+
+    /**
+     * 逻辑删除
+     */
+    public final QueryColumn DEL = new QueryColumn(this, "del");
 
     /**
      * 图标地址
@@ -52,11 +57,6 @@ public class PmsCategoryTableDef extends TableDef {
     public final QueryColumn PARENT_CID = new QueryColumn(this, "parent_cid");
 
     /**
-     * 是否显示[0-不显示，1显示]
-     */
-    public final QueryColumn SHOW_STATUS = new QueryColumn(this, "show_status");
-
-    /**
      * 计量单位
      */
     public final QueryColumn PRODUCT_UNIT = new QueryColumn(this, "product_unit");
@@ -74,7 +74,7 @@ public class PmsCategoryTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{CAT_ID, NAME, PARENT_CID, CAT_LEVEL, SHOW_STATUS, SORT, ICON, PRODUCT_UNIT, PRODUCT_COUNT};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{CAT_ID, NAME, PARENT_CID, CAT_LEVEL, SORT, ICON, PRODUCT_UNIT, PRODUCT_COUNT, DEL};
 
     public PmsCategoryTableDef() {
         super("", "pms_category");

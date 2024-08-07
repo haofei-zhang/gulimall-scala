@@ -20,7 +20,6 @@ public interface CategoryConverter {
             @Mapping(source = "catId", target = "catId"),
             @Mapping(source = "name", target = "name"),
             @Mapping(source = "parentCid", target = "parentCid"),
-            @Mapping(source = "showStatus", target = "showStatus"),
             @Mapping(source = "sort", target = "sort"),
             @Mapping(source = "icon", target = "icon"),
             @Mapping(source = "productUnit", target = "productUnit"),

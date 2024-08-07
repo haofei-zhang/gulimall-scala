@@ -1,5 +1,6 @@
 package cn.gulimall.demo.model.po;
 
+import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
@@ -15,7 +16,7 @@ import java.io.Serializable;
  * 商品三级分类 实体类。
  *
  * @author Z
- * @since 2024-07-28
+ * @since 2024-08-07
  */
 @Data
 @Builder
@@ -49,11 +50,6 @@ public class PmsCategory implements Serializable {
     private Integer catLevel;
 
     /**
-     * 是否显示[0-不显示，1显示]
-     */
-    private Boolean showStatus;
-
-    /**
      * 排序
      */
     private Integer sort;
@@ -72,5 +68,10 @@ public class PmsCategory implements Serializable {
      * 商品数量
      */
     private Integer productCount;
+
+    /**
+     * 逻辑删除
+     */
+    private Boolean del;
 
 }

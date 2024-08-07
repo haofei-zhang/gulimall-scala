@@ -30,4 +30,10 @@ trait PmsCategoryService {
    */
   def update(pmsCategoryDto: PmsCategoryDto): Unit
 
+  /**
+   * 批量删除
+   * @param ids
+   */
+  def delete(ids: util.List[Integer])
+
 }
