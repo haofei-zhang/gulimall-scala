@@ -9,6 +9,7 @@ import cn.hutool.core.collection.CollUtil
 import org.springframework.beans.BeanUtils
 import org.springframework.stereotype.Service
 
+import java.util.Objects
 import java.util.stream.Collectors
 import java.{lang, util}
 
@@ -52,12 +53,26 @@ class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCa
 
   override def insert(pmsCategoryDto: PmsCategoryDto): Unit = {
     val category = categoryConverter.toPo(pmsCategoryDto)
-//    pmsCategoryMapper.insert(category)
+    if (Objects.isNull(category.getParentCid)) {
+      category.setCatLevel(1)
+    } else {
+      val parent = pmsCategoryMapper.selectOneById(category.getParentCid)
+      if (Objects.isNull(parent)) {
+        throw new RuntimeException("父分类不存在")
+      }
+      category.setCatLevel(parent.getCatLevel + 1)
+    }
+    if (Integer.compare(category.getCatLevel, 3) > 0) {
+      throw new RuntimeException("最多支持三级分类")
+    }
+    pmsCategoryMapper.insert(category)
   }
 
   override def update(pmsCategoryDto: PmsCategoryDto): Unit = {
     val category = categoryConverter.toPo(pmsCategoryDto)
-//    pmsCategoryMapper.update(category)
+    category.setCatLevel(null)
+    category.setParentCid(null)
+    pmsCategoryMapper.update(category)
   }
 
   /**
@@ -66,6 +81,10 @@ class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCa
    * @param ids
    */
   override def delete(ids: util.List[Integer]): Unit = {
+    val children = pmsCategoryMapper.listByParentCid(ids)
+    if (CollUtil.isNotEmpty(children)) {
+      throw new RuntimeException("存在子分类，无法删除")
+    }
     pmsCategoryMapper.deleteBatchByIds(ids)
   }
 }

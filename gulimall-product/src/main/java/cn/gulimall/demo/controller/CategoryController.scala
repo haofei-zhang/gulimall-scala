@@ -4,6 +4,7 @@ import cn.gulimall.demo.model.dto.PmsCategoryDto
 import cn.gulimall.demo.model.vo.ResultVo
 import cn.gulimall.demo.service.PmsCategoryService
 import org.springframework.web.bind.annotation.{GetMapping, PostMapping, RequestBody, RequestMapping, RestController}
+import java.util
 
 /**
  *
@@ -28,6 +29,12 @@ class CategoryController(pmsCategoryService: PmsCategoryService) {
   @PostMapping(Array("/update"))
   def update(@RequestBody pmsCategoryDto: PmsCategoryDto): ResultVo = {
     pmsCategoryService.update(pmsCategoryDto)
+    ResultVo.ok()
+  }
+
+  @PostMapping(Array("/delete"))
+  def delete(@RequestBody ids: util.List[Integer]): ResultVo = {
+    pmsCategoryService.delete(ids)
     ResultVo.ok()
   }
 

@@ -1,8 +1,13 @@
 package cn.gulimall.demo.mapper
 
 import cn.gulimall.demo.model.po.PmsCategory
+import cn.gulimall.demo.model.po.table.PmsCategoryTableDef
+import cn.hutool.core.collection.CollUtil
 import com.mybatisflex.core.BaseMapper
+import com.mybatisflex.core.query.QueryWrapper
 import org.apache.ibatis.annotations.Mapper
+
+import java.util
 
 /**
  *
@@ -11,5 +16,12 @@ import org.apache.ibatis.annotations.Mapper
  */
 @Mapper
 trait PmsCategoryMapper extends BaseMapper[PmsCategory]{
+
+  def listByParentCid(parentCids: util.List[Integer]): util.List[PmsCategory] = {
+    val query = QueryWrapper.create()
+      .select()
+      .where(PmsCategoryTableDef.PMS_CATEGORY.PARENT_CID.in(parentCids, CollUtil.isNotEmpty(parentCids)))
+    selectListByQuery(query)
+  }
 
 }
