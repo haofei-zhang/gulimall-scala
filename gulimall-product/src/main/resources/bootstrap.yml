@@ -12,3 +12,6 @@ spring:
           - data-id: datasource.yml
           - data-id: redis.yml
           - data-id: default-sa-token-config.yml
+logging:
+  level:
+    cn.gulimall: debug

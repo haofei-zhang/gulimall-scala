@@ -31,7 +31,7 @@ object Codegen {
     globalConfig.setEntityPackage("cn.gulimall.demo.model.po")
     //设置表前缀和只生成哪些表
     globalConfig.setTablePrefix("")
-    globalConfig.setGenerateTable("pms_category")
+    globalConfig.setGenerateTable("pms_brand")
 
     //设置生成 entity 并启用 Lombok
     globalConfig.setEntityGenerateEnable(true)
