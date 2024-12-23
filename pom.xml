@@ -21,6 +21,7 @@
         <module>gulimall-model</module>
         <module>gulimall-model/gulimall-admin-model</module>
         <module>gulimall-gateway</module>
+        <module>gulimall-common/gulimall-aop</module>
     </modules>
     <packaging>pom</packaging>
 
