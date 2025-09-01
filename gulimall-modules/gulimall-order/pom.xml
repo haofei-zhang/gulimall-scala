@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.gulimall.demo</groupId>
-        <artifactId>gulimall-scala</artifactId>
+        <artifactId>gulimall-modules</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gulimall-ware</artifactId>
+    <artifactId>gulimall-order</artifactId>
 
 </project>

@@ -13,7 +13,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
+        <module>gulimall-aop</module>
         <module>gulimall-config</module>
+        <module>gulimall-common-model</module>
+        <module>gulimall-util</module>
     </modules>
 
     <dependencies>

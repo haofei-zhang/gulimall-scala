@@ -12,6 +12,7 @@
     <artifactId>gulimall-model</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>gulimall-admin-model</module>
         <module>gulimall-product-model</module>
     </modules>
 

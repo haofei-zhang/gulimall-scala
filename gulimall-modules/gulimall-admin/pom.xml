@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>gulimall-scala</artifactId>
         <groupId>cn.gulimall.demo</groupId>
+        <artifactId>gulimall-modules</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>gulimall-product</artifactId>
+    <artifactId>gulimall-admin</artifactId>
 
     <dependencies>
         <dependency>
@@ -20,6 +20,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.axet</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>0.0.9</version>
         </dependency>
 
         <dependency>
@@ -40,6 +46,18 @@
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot3-starter</artifactId>
         </dependency>
+        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis-jackson</artifactId>
+        </dependency>
+        <!-- 提供Redis连接池 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+
 
         <dependency>
             <groupId>com.mysql</groupId>
@@ -52,6 +70,10 @@
         <dependency>
             <groupId>com.mybatis-flex</groupId>
             <artifactId>mybatis-flex-spring-boot3-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
         </dependency>
 
         <dependency>
@@ -66,12 +88,7 @@
         </dependency>
         <dependency>
             <groupId>cn.gulimall.demo</groupId>
-            <artifactId>gulimall-aop</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.gulimall.demo</groupId>
-            <artifactId>gulimall-product-model</artifactId>
+            <artifactId>gulimall-admin-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
