@@ -1,6 +1,7 @@
 package cn.gulimall.demo.service.impl
 
 import cn.dev33.satoken.stp.{SaTokenInfo, StpUtil}
+import cn.gulimall.demo.converter.MenuConverter
 import cn.gulimall.demo.mapper.{SysMenuMapper, SysRoleMenuMapper, SysUserMapper, SysUserRoleMapper}
 import cn.gulimall.demo.model.dto.LoginDto
 import cn.gulimall.demo.model.po.SysMenu
@@ -8,6 +9,7 @@ import cn.gulimall.demo.model.vo.SysMenuVo
 import cn.gulimall.demo.service.SysLoginService
 import cn.hutool.core.collection.CollUtil
 import com.alibaba.fastjson2.JSONObject
+import lombok.extern.slf4j.Slf4j
 import org.apache.commons.codec.digest.DigestUtils
 import org.slf4j.{Logger, LoggerFactory}
 import org.springframework.beans.BeanUtils
@@ -26,9 +28,8 @@ import java.util.stream.Collectors
 class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
                           sysUserRoleMapper: SysUserRoleMapper,
                           sysRoleMenuMapper: SysRoleMenuMapper,
-                          sysMenuMapper: SysMenuMapper) extends SysLoginService {
-
-  private def log: Logger = LoggerFactory.getLogger(classOf[SysLoginServiceImpl])
+                          sysMenuMapper: SysMenuMapper,
+                          menuConverter: MenuConverter) extends SysLoginService {
 
   override def login(loginDto: LoginDto): SaTokenInfo = {
     val user = sysUserMapper.selectByMobile(loginDto.getMobile)
@@ -39,7 +40,6 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
       throw new RuntimeException("密码错误")
     }
     StpUtil.login(user.getUserId)
-
     StpUtil.getTokenInfo
   }
 
@@ -47,8 +47,35 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
     StpUtil.logout()
   }
 
+  /**
+   * 获取用户菜单
+   *
+   * @param userId
+   * @return
+   */
+  override def getUserMenu(userId: Long): JSONObject = {
+    val menuList = getUserMenuList(userId)
+    val permsList = getUserPermissions(userId)
+    val data = new JSONObject()
+    data.put("menuList", menuList)
+    data.put("permissions", permsList)
+    data
+  }
+
   override def getUserMenuList(userId: Long): util.List[SysMenuVo] = {
     getMenuList(null)
+  }
+
+  def getMenuList(list: util.List[Long]): util.List[SysMenuVo] = {
+    val menuList = sysMenuMapper.getMenuList(list)
+    val menuMap: util.Map[lang.Integer, util.List[SysMenuVo]] = menuList.stream()
+      .map(x => {
+      menuConverter.toVo(x)
+    })
+      .collect(Collectors.groupingBy((x: SysMenuVo) => x.getParentId))
+    val parentList = menuMap.get(0)
+    menuConverter.fillChildrenMenu(parentList, menuMap)
+    parentList
   }
 
   /**
@@ -67,45 +94,6 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
       .distinct()
       .filter(x => Objects.nonNull(x))
       .collect(Collectors.toList())
-  }
-
-  /**
-   * 获取用户菜单
-   *
-   * @param userId
-   * @return
-   */
-  override def getUserMenu(userId: Long): JSONObject = {
-    val menuList = getUserMenuList(userId)
-    val permsList = getUserPermissions(userId)
-    val data = new JSONObject()
-    data.put("menuList", menuList)
-    data.put("permissions", permsList)
-    data
-  }
-
-  def getMenuList(list: util.List[Long]): util.List[SysMenuVo] = {
-    val menuList = sysMenuMapper.getMenuList(list)
-    val menuMap: util.Map[lang.Integer, util.List[SysMenuVo]] = menuList.stream().map(x => {
-      //TODO 后面要用mapstruct
-      val sysMenuVo = new SysMenuVo()
-      BeanUtils.copyProperties(x, sysMenuVo)
-      sysMenuVo
-    }).collect(Collectors.groupingBy((x: SysMenuVo) => x.getParentId))
-    val parentList = menuMap.get(0)
-    fillChildrenMenu(parentList, menuMap)
-    parentList
-  }
-
-  def fillChildrenMenu(list: util.List[SysMenuVo], map: util.Map[lang.Integer, util.List[SysMenuVo]]): Unit = {
-    if (CollUtil.isEmpty(list)){
-      return
-    }
-    list.forEach(x => {
-      val children = map.get(x.getMenuId)
-      fillChildrenMenu(children, map)
-      x.setChildren(children)
-    })
   }
 
 }

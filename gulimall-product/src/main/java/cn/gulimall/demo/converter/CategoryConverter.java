@@ -11,10 +11,8 @@ import org.mapstruct.factory.Mappers;
  * @author Z
  * @since 2024/8/4 下午8:43
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CategoryConverter {
-
-    CategoryConverter INSTANCE = Mappers.getMapper(CategoryConverter.class);
 
     @Mappings({
             @Mapping(source = "catId", target = "catId"),

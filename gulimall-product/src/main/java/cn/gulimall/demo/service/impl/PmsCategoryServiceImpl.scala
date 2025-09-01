@@ -19,9 +19,8 @@ import java.{lang, util}
  * @since 2024/7/2 下午11:23
  */
 @Service
-class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper) extends PmsCategoryService{
-
-  val categoryConverter: CategoryConverter = CategoryConverter.INSTANCE
+class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper,
+                             categoryConverter: CategoryConverter) extends PmsCategoryService{
 
   override def listWithTree(): util.List[PmsCategoryVo] = {
     val categoryList = pmsCategoryMapper.selectAll()
