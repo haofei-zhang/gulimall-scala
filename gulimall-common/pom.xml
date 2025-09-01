@@ -15,7 +15,7 @@
     <modules>
         <module>gulimall-core</module>
         <module>gulimall-config</module>
-        <module>gulimall-common-model</module>
+        <module>gulimall-web</module>
         <module>gulimall-util</module>
     </modules>
 
