@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gulimall-aop</artifactId>
+    <artifactId>gulimall-core</artifactId>
 
     <dependencies>
         <dependency>

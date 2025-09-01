@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service
  * @since 2024/5/21 下午11:09
  */
 @Service
-class SysMenuServiceImpl(sysMenuMapper: SysMenuMapper) extends SysMenuService{
+class SysMenuServiceImpl(sysMenuMapper: SysMenuMapper) extends ServiceImpl with SysMenuService{
 
 }

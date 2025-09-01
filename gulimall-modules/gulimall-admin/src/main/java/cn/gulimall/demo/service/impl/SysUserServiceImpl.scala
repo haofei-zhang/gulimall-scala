@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
  * @since 2024/5/29 下午11:14
  */
 @Service
-class SysUserServiceImpl(sysUserMapper: SysUserMapper) extends SysUserService{
+class SysUserServiceImpl(sysUserMapper: SysUserMapper) extends ServiceImpl with SysUserService{
 
   /**
    * 根据id查询

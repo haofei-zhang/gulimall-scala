@@ -29,7 +29,7 @@ class SysLoginServiceImpl(sysUserMapper: SysUserMapper,
                           sysUserRoleMapper: SysUserRoleMapper,
                           sysRoleMenuMapper: SysRoleMenuMapper,
                           sysMenuMapper: SysMenuMapper,
-                          menuConverter: MenuConverter) extends SysLoginService {
+                          menuConverter: MenuConverter) extends ServiceImpl with SysLoginService {
 
   override def login(loginDto: LoginDto): SaTokenInfo = {
     val user = sysUserMapper.selectByMobile(loginDto.getMobile)

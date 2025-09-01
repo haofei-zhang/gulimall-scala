@@ -20,7 +20,7 @@ import java.{lang, util}
  */
 @Service
 class PmsCategoryServiceImpl(pmsCategoryMapper: PmsCategoryMapper,
-                             categoryConverter: CategoryConverter) extends PmsCategoryService{
+                             categoryConverter: CategoryConverter) extends ServiceImpl with PmsCategoryService{
 
   override def listWithTree(): util.List[PmsCategoryVo] = {
     val categoryList = pmsCategoryMapper.selectAll()

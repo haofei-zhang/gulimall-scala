@@ -1,6 +1,0 @@
-mybatis-flex:
-  configuration:
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-logging:
-  level:
-    cn.gulimall: debug

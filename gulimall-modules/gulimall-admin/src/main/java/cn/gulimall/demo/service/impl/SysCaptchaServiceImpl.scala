@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage
  */
 @Service
 class SysCaptchaServiceImpl(sysCaptchaMapper: SysCaptchaMapper,
-                            defaultKaptcha: DefaultKaptcha) extends SysCaptchaService{
+                            defaultKaptcha: DefaultKaptcha) extends ServiceImpl with SysCaptchaService{
 
   override def getCaptcha(uuid: String): BufferedImage = {
     val code = defaultKaptcha.createText()
