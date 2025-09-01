@@ -30,6 +30,7 @@
         <scala.version>2.13.11</scala.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
         <spring-boot.version>3.2.5</spring-boot.version>
@@ -45,6 +46,9 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <minio.version>8.5.11</minio.version>
         <jackson.scala.version>2.15.4</jackson.scala.version>
+
+        <nacos.server>127.0.0.1:8848</nacos.server>
+        <nacos.namespace>e1dbb7ff-7bf8-4661-bf03-a8a58e2d0d21</nacos.namespace>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -115,11 +119,6 @@
                 <artifactId>easyexcel</artifactId>
                 <version>${easyexcel.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper-starter.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>cn.hutool</groupId>
@@ -170,5 +169,50 @@
             <version>1.18.32</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>4.8.1</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                    <args>
+                        <argument>-deprecation</argument>
+                        <argument>-feature</argument>
+                    </args>
+                    <jvmArgs>
+                        <jvmArg>-Xms2048m</jvmArg>
+                        <jvmArg>-Xmx2048m</jvmArg>
+                    </jvmArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>
