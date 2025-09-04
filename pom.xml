@@ -36,6 +36,7 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <minio.version>8.5.11</minio.version>
         <jackson.scala.version>2.15.4</jackson.scala.version>
+        <elasticsearch.client.version>7.17.29</elasticsearch.client.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -128,6 +129,13 @@
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.client.version}</version>
+            </dependency>
+
             <!-- scala-->
             <dependency>
                 <groupId>org.scala-lang</groupId>
