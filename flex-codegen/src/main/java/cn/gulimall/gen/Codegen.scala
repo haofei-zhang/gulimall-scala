@@ -13,7 +13,7 @@ object Codegen {
 
   def main(args: Array[String]): Unit = {
     val dataSource = new HikariDataSource()
-    dataSource.setJdbcUrl("jdbc:mysql://192.168.31.110:3306/gulimall_pms?characterEncoding=utf-8")
+    dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/gulimall_pms?characterEncoding=utf-8")
     dataSource.setUsername("root")
     dataSource.setPassword("123456")
 
@@ -28,17 +28,17 @@ object Codegen {
     val globalConfig = new GlobalConfig()
     //设置根包
     globalConfig.setSourceDir("flex-codegen/src/main/java")
-    globalConfig.setEntityPackage("cn.gulimall.demo.model.po")
+    globalConfig.setEntityPackage("cn.gulimall.gen.model.po")
     //设置表前缀和只生成哪些表
     globalConfig.setTablePrefix("")
-    globalConfig.setGenerateTable("pms_brand")
+    globalConfig.setGenerateTable("pms_attr")
 
     //设置生成 entity 并启用 Lombok
     globalConfig.setEntityGenerateEnable(true)
     globalConfig.setEntityWithLombok(true)
     //设置生成 tableDef
     globalConfig.setTableDefGenerateEnable(true)
-    globalConfig.setTableDefPackage("cn.gulimall.demo.model.po.table")
+    globalConfig.setTableDefPackage("cn.gulimall.gen.model.po.table")
 
     globalConfig.setAuthor("Z")
 

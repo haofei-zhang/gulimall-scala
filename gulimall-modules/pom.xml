@@ -25,6 +25,7 @@
         <module>gulimall-ware</module>
         <module>gulimall-product</module>
         <module>gulimall-admin</module>
+        <module>gulimall-search</module>
     </modules>
 
     <build>
